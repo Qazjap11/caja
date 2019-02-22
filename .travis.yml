@@ -135,7 +135,7 @@ requires:
 variables:
   - CFLAGS="-Wall -Werror=format-security"
   - 'CHECKERS="
-    --use-analyzer=/usr/share/clang
+    --use-analyzer=`which clang`
     -enable-checker deadcode.DeadStores
     -enable-checker alpha.core.CastSize
     -enable-checker alpha.core.CastToStruct
@@ -158,14 +158,25 @@ after_scripts:
   -     make clean
   -     scan-build $CHECKERS --use-analyzer=/usr/bin/clang --keep-cc -o html-report make
   -     cat > index.html <<EOF
+  -     <!DOCTYPE HTML>
+  -     <html lang="en">
+  -     <head>
+  -       <link rel="icon" href="http://mate-desktop.org/favicon.ico" sizes="16x16">
+  -       <title>$TRAVIS_REPO_SLUG Code Analizer</title></head>
+  -     <body>
   -     <h1>
-  -       <a href="https://github.com/mate-desktop/caja">caja</a>
-    #-       <a href="https://github.com/$OWNER_NAME/$REPO_NAME">$REPO_NAME</a> #for docker-build v0.1.1
+  -     <a href="https://github.com/$TRAVIS_REPO_SLUG">$TRAVIS_REPO_SLUG</a>
   -     </h1>
-  -     <a href="https://travis-ci.org/mate-desktop/caja">
-    #-     <a href="https://travis-ci.org/$OWNER_NAME/$REPO_NAME"> #for docker-build v0.1.1
-  -       <img src="https://travis-ci.org/mate-desktop/caja.svg?branch=master" alt="Build Status" /></a>
-    #-       <img src="https://travis-ci.org/$OWNER_NAME/$REPO_NAME.svg?branch=master" alt="Build Status" /></a> #for docker-build v0.1.1
+  -     <a href="$TRAVIS_BUILD_WEB_URL"><img src="https://travis-ci.org/$TRAVIS_REPO_SLUG.svg?branch=$TRAVIS_BRANCH" alt="Build Status" /></a>
+  -     <hr/>
+  -     Commit: <a href="https://github.com/$TRAVIS_REPO_SLUG/commit/$TRAVIS_COMMIT">$TRAVIS_COMMIT</a><br/>
+  -     Compare: <a href="https://github.com/$TRAVIS_REPO_SLUG/compare/$TRAVIS_COMMIT_RANGE">$TRAVIS_COMMIT_RANGE</a><br/>
+  -     Branch: <a href="https://github.com/$TRAVIS_REPO_SLUG/tree/$TRAVIS_BRANCH">$TRAVIS_BRANCH</a><br/>
+  -     'Time: `date --rfc-3339=seconds`<br/>'
+  -     Messages:<br/>
+  -     <pre>
+  -     $TRAVIS_COMMIT_MESSAGE
+  -     </pre>
   -     <hr/>
   -     <ul>
   -     EOF
@@ -173,6 +184,8 @@ after_scripts:
   -       echo "<li><a href=$i>Static analizer result($i)</a></li>" >> index.html
   -     done
   -     echo "</ul>" >> index.html
+  -     echo "</body>" >> index.html
+  -     echo "</html>" >> index.html
   -     mv index.html html-report
   - fi
   - make distcheck
