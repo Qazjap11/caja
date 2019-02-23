@@ -63,6 +63,7 @@ requires:
     # Useful URL: https://github.com/mate-desktop/debian-packages
     # Useful URL: https://salsa.debian.org/debian-mate-team/caja
     - clang
+    - clang-tools
     - git # Required to generate the ChangeLog file
     - gobject-introspection
     - gtk-doc-tools
@@ -83,7 +84,6 @@ requires:
     - libxml2-dev
     - mate-common
     - quilt
-    - scan-build
     - shared-mime-info
 
   fedora:
@@ -112,6 +112,7 @@ requires:
   ubuntu:
     # Same as debian
     - clang
+    - clang-tools
     - git # Required to generate the ChangeLog file
     - gobject-introspection
     - gtk-doc-tools
@@ -132,7 +133,6 @@ requires:
     - libxml2-dev
     - mate-common
     - quilt
-    - scan-build
     - shared-mime-info
 
 # Uncomment the following lines to get more compile warnings
@@ -175,11 +175,11 @@ after_scripts:
   -     </h1>
   -     <a href="$TRAVIS_BUILD_WEB_URL"><img src="https://travis-ci.org/${OWNER_NAME}/${REPO_NAME}.svg?branch=master" alt="Build Status" /></a>
   -     <hr/>
-  -     Commit: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/commit/$TRAVIS_COMMIT">$TRAVIS_COMMIT</a><br/>
-  -     Compare: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/compare/$TRAVIS_COMMIT_RANGE">$TRAVIS_COMMIT_RANGE</a><br/>
-  -     Branch: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/tree/$TRAVIS_BRANCH">$TRAVIS_BRANCH</a><br/>
+  -     'Commit: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/commit/$TRAVIS_COMMIT">$TRAVIS_COMMIT</a><br/>'
+  -     'Compare: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/compare/$TRAVIS_COMMIT_RANGE">$TRAVIS_COMMIT_RANGE</a><br/>'
+  -     'Branch: <a href="https://github.com/${OWNER_NAME}/${REPO_NAME}/tree/$TRAVIS_BRANCH">$TRAVIS_BRANCH</a><br/>'
   -     'Time: `date --rfc-3339=seconds`<br/>'
-  -     Messages:<br/>
+  -     'Messages:<br/>'
   -     <pre>
   -     $TRAVIS_COMMIT_MESSAGE
   -     </pre>
