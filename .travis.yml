@@ -36,7 +36,7 @@ deploy:
   local-dir: html-report
   on:
     all_branches: true
-    condition: "${DISTRO} =~ ^fedora.*$"
+    condition: "${DISTRO} =~ ^archlinux.*$"
 
 ##########################################################
 # THE FOLLOWING LINES IS USED BY docker-build
