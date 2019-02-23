@@ -44,10 +44,10 @@ deploy:
 requires:
   archlinux:
     # Useful URL: https://git.archlinux.org/svntogit/community.git/tree/caja
+    - clang
     - gcc
     - git
     - make
-    # Append new requires below
     - exempi
     - gobject-introspection
     - gvfs
@@ -62,6 +62,7 @@ requires:
   debian:
     # Useful URL: https://github.com/mate-desktop/debian-packages
     # Useful URL: https://salsa.debian.org/debian-mate-team/caja
+    - clang
     - git # Required to generate the ChangeLog file
     - gobject-introspection
     - gtk-doc-tools
@@ -109,6 +110,7 @@ requires:
 
   ubuntu:
     # Same as debian
+    - clang
     - git # Required to generate the ChangeLog file
     - gobject-introspection
     - gtk-doc-tools
