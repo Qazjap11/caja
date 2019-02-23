@@ -162,7 +162,7 @@ build_scripts:
   - scan-build $CHECKERS --use-analyzer=/usr/bin/clang --keep-cc -o html-report make
 
 after_scripts:
-  - if [ ${DISTRO_NAME} == "fedora" ];then
+  - if [ ${DISTRO_NAME} == "archlinux" ];then
   -     cat > index.html <<EOF
   -     <!DOCTYPE HTML>
   -     <html lang="en">
